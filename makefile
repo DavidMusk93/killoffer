@@ -9,7 +9,7 @@ OBJ := $(addprefix $(OBJ_DIR)/,$(SRC:%.cc=%.o))
 
 define build-object
 @[ -d $(@D) ] || mkdir -p $(@D)
-g++ -c $(CPPFLAGS) $1 $< -o $@
+g++ -c $(CPPFLAGS) $1 $< -o $@ -DDEBUG
 endef
 
 define build-executable

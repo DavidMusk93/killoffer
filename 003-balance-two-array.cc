@@ -15,7 +15,7 @@ static void dump_vector(std::vector<int>& v)
 
 bool solver(std::vector<int>& res, int *a, const int n, const int m, const int target)
 {
-  static __thread int pop, i,sum,pre,diff;
+  static __thread int pop,i,sum,pre,diff;
   if (m==(int)res.size()) {
 #ifdef DEBUG
     dump_vector(res);
@@ -33,18 +33,14 @@ bool solver(std::vector<int>& res, int *a, const int n, const int m, const int t
     }
     return true;
   }
-  for (i=0; i<n; ++i) {
-    res.push_back(a[0]);
-    if (solver(res,a+1,n-1,m,target))
-      return true;
-    pop=res.back();
-    res.pop_back();
-    if (solver(res,a+1,n-1,m,target))
-      return true;
-    else
-      break;
-  }
-  return false;
+  if (!n)
+    return false;
+  res.push_back(a[0]);
+  if (solver(res,a+1,n-1,m,target))
+    return true;
+  pop=res.back();
+  res.pop_back();
+  return solver(res,a+1,n-1,m,target);
 }
 
 int main()
