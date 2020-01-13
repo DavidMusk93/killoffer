@@ -34,6 +34,10 @@ X002 := 002-hold-water
 $(BIN_DIR)/$(X002): $(OBJ_DIR)/$(X002).o $(LOG_OBJ)
 	$(build-executable)
 
+X003 := 003-balance-two-array
+$(BIN_DIR)/$(X003): $(OBJ_DIR)/$(X003).o $(LOG_OBJ)
+	$(build-executable)
+
 .PHONY: clean
 
 clean:
