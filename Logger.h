@@ -1,24 +1,25 @@
 #pragma once
 
-namespace sun
-{
+namespace sun {
 
-class Logger {
- public:
-  void Debug(const char *fmt, ...);
-  void Info(const char *fmt, ...);
-  void Error(const char *fmt, ...);
+    class Logger {
+    public:
+        void Debug(const char *fmt, ...);
 
-  static Logger& GetInstance();
+        void Info(const char *fmt, ...);
 
- private:
-  Logger();
+        void Error(const char *fmt, ...);
 
-  char buf_[1024];
+        static Logger &GetInstance();
 
-  static Logger instance;
-  static constexpr int kBufferSize = sizeof(buf_) - 1;
-};
+    private:
+        Logger();
+
+        char buf_[1024];
+
+        static Logger instance;
+        static constexpr int kBufferSize = sizeof(buf_) - 1;
+    };
 
 }
 
