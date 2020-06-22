@@ -14,3 +14,5 @@
 
 #define FORWARD_FOR(i, s, e)  for(size_t i=s,__n=e;i<__n;++i)
 #define BACKWARD_FOR(i, s, e) for(size_t i=s,__n=e;i>__n;--i)
+
+#define LOG(fmt, ...) printf(fmt "\n", ##__VA_ARGS__)

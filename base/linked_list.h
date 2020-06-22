@@ -10,6 +10,12 @@
 struct linked_list_t {
     void *key;
     struct linked_list_t *next;
+#ifdef DOUBLY_LIST
+    struct linked_list_t *pre;
+#endif
+#ifdef EXTENDED_LIST
+    struct linked_list_t **pre_next;
+#endif
 };
 
 typedef const char *(*FN_linked_list_node_to_string)(struct linked_list_t *node, char buf[64]);

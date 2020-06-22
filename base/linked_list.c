@@ -49,11 +49,11 @@ LIST *linked_list_from_array(LIST *list, void **array, size_t n) {
 
 #include "../macro.h"
 
-static const char *dump_int(LIST *node, char *buf) {
-    if (!node) {
+static const char *dump_int(LIST *current, char *buf) {
+    if (!current) {
         return "";
     }
-    sprintf(buf, "%d", *(int *) node->key);
+    sprintf(buf, "%d", *(int *) current->key);
     return buf;
 }
 
