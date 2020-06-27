@@ -45,13 +45,13 @@ const char *zigzag_convert(const char *in, size_t len, size_t k, char *out) {
 //    if (!in) {
 //        return in;
 //    }
-//    size_t len = strlen(in);
-//    if (len < 2 || k == 1) {
+//    size_t end = strlen(in);
+//    if (end < 2 || k == 1) {
 //        return in;
 //    }
 //    static char out[4096];
-//    out[len] = 0;
-//    return (char *) zigzag_convert((const char *) in, len, k, out);
+//    out[end] = 0;
+//    return (char *) zigzag_convert((const char *) in, end, k, out);
 //}
 
 //#define TEST_ZIGZAG 1
@@ -61,15 +61,15 @@ const char *zigzag_convert(const char *in, size_t len, size_t k, char *out) {
 
 MAIN_EX(argc, argv) {
     const char in[] = "PAYPALISHIRING";
-    const size_t len = sizeof(in) - 1;
-    char out[len + 1];
-    out[len] = 0;
+    const size_t end = sizeof(in) - 1;
+    char out[end + 1];
+    out[end] = 0;
     size_t k = 3;
     if (argc > 1) {
         k = strtol(argv[1], 0, 10);
         k = k < 2 ? 2 : k;
     }
-    zigzag_convert(in, len, k, out);
+    zigzag_convert(in, end, k, out);
     puts(out);
     return 0;
 }
