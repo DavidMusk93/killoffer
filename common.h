@@ -17,7 +17,9 @@ struct ListNode {
 struct TreeNode{
     int val;
     TreeNode*left,*right;
-    TreeNode(int x):val(x),left(nullptr),right(nullptr){}
+    TreeNode():TreeNode(0){}
+    TreeNode(int x):TreeNode(x,nullptr,nullptr){}
+    TreeNode(int x,TreeNode*left,TreeNode*right):val(x),left(left),right(right){}
 };
 
 ListNode *reverse(ListNode *self);
