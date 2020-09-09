@@ -7,7 +7,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-#define SIGN_MASK (1U<<31U)
+#define MASK (1U<<31U)
         int n=prices.size();
         if(n<2){
             return 0;
@@ -17,7 +17,7 @@ public:
             dp[i]=dp[i+1]; //drop oneself for default
             for(int j=i+1;j<n;++j){
                 unsigned delta=prices[i]-prices[j];
-                if(delta&SIGN_MASK){
+                if(delta & MASK){
                     dp[i]=max(dp[i],dp[j+2]-static_cast<int>(delta));
                 }
             }

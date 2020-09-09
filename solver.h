@@ -14,8 +14,13 @@
 #include <functional>
 #include <chrono>
 #include <iostream>
+#include <algorithm>
+#include <set>
+#include <bitset>
 
 #include <cstring>
+#include <cmath>
+#include <cctype>
 
 #include "macro.h"
 #include "common.h"
@@ -28,16 +33,62 @@ namespace sun{
     }
 }
 
+template<typename T>
+static inline/*assemble code replacement(enlarge output)*/ std::ostream&operator<<(std::ostream&os,const std::vector<T>&v){
+    os<<'[';
+    for(auto&i:v){
+        if(&i==&v[0]){
+            os<<i;
+        }else{
+            os<<","<<i;
+        }
+    }
+    os<<']';
+//    os<<std::endl;
+    return os;
+}
+
+static inline void dump_blob(const void*data,int len){
+    auto p=reinterpret_cast<const unsigned char*>(data);
+    for(int i=0;i<len;++i,++p){
+        if(i){
+            cout<<","<<int(*p);
+        }else{
+            cout<<int(*p);
+        }
+    }
+    cout<<endl;
+}
+
+#define COLOR(x) "\x1B[" #x "m"
+#define RED COLOR(31)
+#define GREEN COLOR(32)
+#define RESET COLOR(0)
+
 #define EXPECT(expr,expected) \
 do{\
     auto t1=sun::now();\
-    cout<<#expr\
+    auto r=expr;\
+    cout<<#expr "="\
+        <<r\
         <<" "\
-        <<((expr)==expected?"pass":"failure")\
-        <<" ("\
+        <<(r==expected?GREEN "pass":RED "failure")\
+        <<RESET " ("\
         <<({auto t2=sun::now();t2-t1;})\
         <<"us)"\
         <<endl;\
 }while(0)
+
+#define PREREQUISITES() Solution solver
+
+//#define ENHANCED 1
+#if ENHANCED
+#undef PREREQUISITES
+#define PREREQUISITES(member) \
+Solution solver;\
+const auto&callable=&Solution::member
+#define INVOKE(...) std::invoke(callable,&solver,##__VA_ARGS__)
+#define TEST(e,...) EXPECT(INVOKE(__VA_ARGS__),e)
+#endif
 
 #endif //KILLOFFER_SOLVER_H

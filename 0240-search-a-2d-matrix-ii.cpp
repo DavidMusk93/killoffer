@@ -40,21 +40,21 @@ int x=mat.size(),y=mat.back().size()
         return searchMatrix_V2(matrix,target);
     }
     bool searchMatrix_V2(vector<vector<int>>&matrix,int target){
-#define SIGN_MASK (1U<<31U)
+#define MASK (1U<<31U)
         BOUNDARY_CHECK(matrix,target);
         SHAPE(matrix,row,col);
         for(int i=row-1,j=0;i>=0&&j<col;){
             unsigned delta=target-matrix[i][j]; //fast in binary tree (children choosing)
             if(!delta){
                 return true;
-            }else if(delta&SIGN_MASK){
+            }else if(delta & MASK){
                 --i;
             }else{
                 ++j;
             }
         }
         return false;
-#undef SIGN_MASK
+#undef MASK
     }
     bool searchMatrix_V1(vector<vector<int>>& matrix, int target) {
         BOUNDARY_CHECK(matrix,target);

@@ -5,6 +5,8 @@
 #ifndef KILLOFFER_COMMON_H
 #define KILLOFFER_COMMON_H
 
+#include <vector>
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -12,6 +14,18 @@ struct ListNode {
     ListNode() : ListNode(-1) {}
 
     ListNode(int x) : val(x), next(nullptr) {}
+
+    static ListNode*LinkNode(std::vector<ListNode>&list){
+        const int N=list.size();
+        if(N==0){
+            return nullptr;
+        }
+        for(int i=0;i+1<N;++i){
+            list[i].next=&list[i+1];
+        }
+        list.back().next=nullptr;
+        return &list.front();
+    }
 };
 
 struct TreeNode{
