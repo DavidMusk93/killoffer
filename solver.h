@@ -18,6 +18,7 @@
 #include <set>
 #include <bitset>
 
+#include <cassert>
 #include <cstring>
 #include <cmath>
 #include <cctype>
@@ -45,6 +46,11 @@ static inline/*assemble code replacement(enlarge output)*/ std::ostream&operator
     }
     os<<']';
 //    os<<std::endl;
+    return os;
+}
+
+static inline std::ostream&operator<<(std::ostream&os,const std::string&s){
+    os<<"\""<<s.c_str()/*danger*/<<"\"";
     return os;
 }
 
