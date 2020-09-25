@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <set>
 #include <bitset>
+#include <memory>
 
 #include <cassert>
 #include <cstring>
