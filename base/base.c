@@ -22,7 +22,7 @@
 void container_check(CONTAINER *self) {
     if (self->size == self->capacity) {
         self->capacity += self->capacity / 2 + 1;
-        self->data = realloc(self->data, self->capacity * sizeof(void *));
+        self->data = realloc(self->data, self->capacity * sizeof(void *)); /*@NOTICE realloc is danger*/
     }
 }
 

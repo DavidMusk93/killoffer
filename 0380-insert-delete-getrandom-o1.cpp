@@ -35,6 +35,45 @@ public:
     unordered_set<int> set_;
 };
 
+namespace sun{
+class RandomizedSet{
+public:
+    RandomizedSet(){
+        srand(time(nullptr));
+    }
+    bool insert(int val){
+        if(map_.count(val)){
+            return false;
+        }
+        data_.push_back(val);
+        map_.insert({val,data_.size()});
+        return true;
+    }
+    bool remove(int val){
+        if(map_.count(val)){
+            auto i=map_[val];
+            if(i!=data_.size()){ /*not the last*/
+                auto tail=data_.back();
+                map_[tail]=i;
+                swap(data_[i-1],data_.back());
+            }
+            map_.erase(val);
+            data_.pop_back();
+            return true;
+        }
+        return false;
+    }
+    int getRandom(){
+        auto n=rand()%data_.size();
+        return data_[n];
+    }
+
+private:
+    vector<int> data_;
+    unordered_map<int, int> map_;
+};
+}
+
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * RandomizedSet* obj = new RandomizedSet();

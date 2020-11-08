@@ -18,6 +18,8 @@
 #include <set>
 #include <bitset>
 #include <memory>
+#include <list>
+#include <sstream>
 
 #include <cassert>
 #include <cstring>
@@ -26,6 +28,7 @@
 
 #include "macro.h"
 #include "common.h"
+#include "base/tool.h"
 
 using namespace std;
 
