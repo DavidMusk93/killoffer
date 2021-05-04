@@ -5,6 +5,7 @@
 #ifndef KILLOFFER_SOLVER_H
 #define KILLOFFER_SOLVER_H
 
+#include <stack>
 #include <vector>
 #include <map>
 #include <queue>
@@ -29,6 +30,7 @@
 #include "macro.h"
 #include "common.h"
 #include "base/tool.h"
+#include "base/separator.h"
 
 using namespace std;
 
